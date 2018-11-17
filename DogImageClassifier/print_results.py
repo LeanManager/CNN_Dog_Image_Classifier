@@ -74,17 +74,30 @@ def print_results(results_dic, results_stats_dic, model,
     # Print summary statistics (percentages) on Model Run
     for key in results_stats_dic:
         if key.startswith('p'):
-            print("{:20}: {:3f}".format(key, results_stats_dic[key]))
+            value = round(results_stats_dic[key], 2)
+            print("{}: {}".format(key, value))
             
     if (print_incorrect_dogs and 
         ((results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs'])
           != results_stats_dic['n_images'] )):
         print("\nINCORRECT Dog/NOT Dog Assignments:") 
         
+        """
+        (index)idx 0 = pet image label (string)
+                    idx 1 = classifier label (string)
+                    idx 2 = 1/0 (int)  where 1 = match between pet image and 
+                            classifer labels and 0 = no match between labels
+                    idx 3 = 1/0 (int)  where 1 = pet image 'is-a' dog and 
+                            0 = pet Image 'is-NOT-a' dog. 
+                    idx 4 = 1/0 (int)  where 1 = Classifier classifies image 
+                            'as-a' dog and 0 = Classifier classifies image  
+                            'as-NOT-a' dog.
+                            """
+        
         # process through results dict, printing incorrectly classified dogs
         for key in results_dic:
-            if results_dic[key][0] != results_dic[key][1]:
-                print("{} misclassified.".format(key))
+            if results_dic[key][3] != results_dic[key][4]:
+                print("Real: {:>26}   Classifier: {:>30}".format(results_dic[key][0], results_dic[key][1]))
         
     if (print_incorrect_breed and 
         (results_stats_dic['n_correct_dogs'] != results_stats_dic['n_correct_breed'])):
