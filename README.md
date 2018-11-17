@@ -1,4 +1,4 @@
-# CNN_Dog_Image_Classifier
+# Convolutional Neural Network Dog Image Classifier
 
 In this project we use a trained image classifier to identify dog breeds. 
 
