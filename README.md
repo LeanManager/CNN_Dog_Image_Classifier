@@ -2,7 +2,7 @@
 
 In this project we use a trained image classifier to identify dog breeds. 
 
-* Main Objectives *
+# * Main Objectives *
 
 1) Correctly identify which pet images are of dogs (even if breed is misclassified) and which pet images aren't of dogs.
  
